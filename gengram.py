@@ -1,6 +1,6 @@
 import random, re
 
-SEP = " "   # token separator symbol
+SEP = " " # token separator symbol
 
 def make_ngrams(tokens, N):
     """ Returns a list of N-long ngrams from a list of tokens """
@@ -44,24 +44,23 @@ def next_word(text, N, counts):
 
     # make a weighted choice for the next_token
     # [see http://stackoverflow.com/a/3679747/2023516]
-    total = sum(w for c, w in choices)
+    total = sum(weight for choice, weight in choices)
     r = random.uniform(0, total)
     upto = 0
-    for c, w in choices:
-        upto += w;
-        if upto > r: return c
+    for choice, weight in choices:
+        upto += weight;
+        if upto > r: return choice
     assert False                            # should not reach here
 
 
 def preprocess_corpus(filename):
-    """ Basic pre-processing to prepare token list """
-
     s = open(filename, 'r').read()
     s = re.sub('[()]', r'', s)                              # remove certain punctuation chars
     s = re.sub('([.-])+', r'\1', s)                         # collapse multiples of certain chars
     s = re.sub('([^0-9])([.,!?])([^0-9])', r'\1 \2 \3', s)  # pad sentence punctuation chars with whitespace
     s = ' '.join(s.split()).lower()                         # remove extra whitespace (incl. newlines)
     return s;
+
 
 def postprocess_output(s):
     s = re.sub('\\s+([.,!?])\\s*', r'\1 ', s)                       # correct whitespace padding around punctuation
@@ -71,6 +70,7 @@ def postprocess_output(s):
 
 
 def gengram_sentence(corpus, N=3, sentence_count=5, start_seq=None):
+	""" Generate a random sentence based on input text corpus """
 
     ngrams = make_ngrams(corpus.split(SEP), N)
     counts = ngram_freqs(ngrams)
@@ -81,7 +81,7 @@ def gengram_sentence(corpus, N=3, sentence_count=5, start_seq=None):
     sentences = 0;
     while sentences < sentence_count:
         rand_text += SEP + next_word(rand_text, N, counts);
-        sentences += 1 if rand_text.endswith(('.','!')) else 0
+        sentences += 1 if rand_text.endswith(('.','!', '?')) else 0
 
     return postprocess_output(rand_text);
 
