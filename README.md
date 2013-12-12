@@ -41,7 +41,7 @@ This first _preprocess_ the text, normalizing whitespace, and then calls the mai
   * `sentence_count` - how many sentences to generate (default: 5)
   * `start_seq` - seed start sequence (default: None)
 
-If no seed `start_seq` is given, gengram chooses a random one. After sentence symbol sequences are generated, they are _postprocessed_ to correct whitespace and capitalization.
+If no seed `start_seq` is given, gengram chooses a random one. After symbol sequences are generated, they are _postprocessed_ to correct whitespace and capitalization.
 
 ### Sample output
 
