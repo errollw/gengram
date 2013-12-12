@@ -70,10 +70,12 @@ def postprocess_output(s):
 
 
 def gengram_sentence(corpus, N=3, sentence_count=5, start_seq=None):
-	""" Generate a random sentence based on input text corpus """
+    """ Generate a random sentence based on input text corpus """
 
     ngrams = make_ngrams(corpus.split(SEP), N)
     counts = ngram_freqs(ngrams)
+
+    print counts
 
     if start_seq is None: start_seq = random.choice(counts.keys());
     rand_text = start_seq.lower();
