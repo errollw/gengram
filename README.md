@@ -13,7 +13,7 @@ The _bigrams_ (2-long n-grams) are:
 
 We arrange n-grams in a table of `symbol_sequence : (next_symbol, frequency)` to record which sequences are most common. From a given `symbol_sequence` we can make a _random weighted choice_ for the `next_symbol`.
 
-An excerpt from the example Happy Hour corpus (trigrams):
+An excerpt from the example Happy Hour corpus, using _trigrams_ (3-long n-grams):
 
 |  symbol sequence  |  next symbol  |  frequency  |
 | ------------------| ------------- | ----------- |
@@ -24,7 +24,6 @@ An excerpt from the example Happy Hour corpus (trigrams):
 | `have a`          | `keg`         | 6           |
 |                   | `recent`      | 1           |
 |                   | `nice`        | 1           |
-|...                | ...           | ...         |
 
 So if we have a symbol sequence that currently ends with `have a`, we are more likely to choose `keg` as the next symbol to output, rather than `recent` or `nice`. By iterating this we can generate long sequences of symbols.
 
@@ -35,7 +34,7 @@ Once we output a punctuation symbol from `. ! ?`, we record that at sentence has
 1. Place source text corpus into `corpus.txt`
 2. Run the `gengram.py` script
 
-This _preprocess_ the text, normalizing whitespace and characters, and then calls the main method `gengram_sentence`. Its arguments are:
+This first _preprocess_ the text, normalizing whitespace, and then calls the main method `gengram_sentence`. Its arguments are:
 
   * `corpus` - preprocessed text corpus
   * `N` - how long the n-grams are (default: 3)
