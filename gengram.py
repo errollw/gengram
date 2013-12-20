@@ -75,8 +75,6 @@ def gengram_sentence(corpus, N=3, sentence_count=5, start_seq=None):
     ngrams = make_ngrams(corpus.split(SEP), N)
     counts = ngram_freqs(ngrams)
 
-    print counts
-
     if start_seq is None: start_seq = random.choice(counts.keys());
     rand_text = start_seq.lower();
 
@@ -91,4 +89,4 @@ def gengram_sentence(corpus, N=3, sentence_count=5, start_seq=None):
 if __name__ == "__main__":
 
     corpus = preprocess_corpus("corpus.txt")
-    print gengram_sentence(corpus, start_seq="Once again")
+    print gengram_sentence(corpus, start_seq="Join us")
