@@ -89,4 +89,4 @@ def gengram_sentence(corpus, N=3, sentence_count=5, start_seq=None):
 if __name__ == "__main__":
 
     corpus = preprocess_corpus("corpus.txt")
-    print gengram_sentence(corpus, start_seq="Join us")
+    print gengram_sentence(corpus, start_seq="Today we")
